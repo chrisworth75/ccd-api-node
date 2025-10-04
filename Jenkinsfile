@@ -33,10 +33,9 @@ pipeline {
             }
             steps {
                 script {
-                    // Stop existing container if running
+                    // Stop and remove existing container if it exists
                     sh """
-                        docker stop ${IMAGE_NAME} || true
-                        docker rm ${IMAGE_NAME} || true
+                        docker rm -f ${IMAGE_NAME} || true
                     """
 
                     // Run new container on port 4452
